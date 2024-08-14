@@ -28,7 +28,7 @@
   "scripts": {
     "prebuildify": "prebuildify --napi --strip",
     "install": "node-gyp-build",
-    "build": "npm run prebuildify && tsup",
+    "build": "npm run prebuildify && tsup --onSuccess 'cp -a package.json dist'",
     "lint": "standardx \"**/*.{ts,mjs,js,cjs}\" | snazzy",
     "test-only": "tap --ts",
     "test": "npm run lint && npm run build && npm run test-only",
