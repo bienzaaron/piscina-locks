@@ -9,19 +9,25 @@
   "author": "James M Snell <jasnell@gmail.com>",
   "license": "MIT",
   "main": "./dist/lib/index.js",
-  "exports": {
-    "import": "./dist/esm-wrapper.mjs",
-    "require": "./dist/lib/index.js"
-  },
+  "module": "./dist/lib/index.mjs",
   "types": "./dist/lib/index.d.ts",
+  "exports": {
+    "import": {
+      "types": "./dist/lib/index.d.mts",
+      "default": "./dist/lib/index.mjs"
+    },
+    "require": {
+      "types": "./dist/lib/index.d.ts",
+      "default": "./dist/lib/index.js"
+    }
+  },
   "scripts": {
     "prebuildify": "prebuildify --napi --strip",
     "install": "node-gyp-build",
-    "build": "npm run prebuildify && tsc && npm run gen-esm-wrapper",
+    "build": "npm run prebuildify && tsup",
     "lint": "standardx \"**/*.{ts,mjs,js,cjs}\" | snazzy",
     "test-only": "tap --ts",
     "test": "npm run lint && npm run build && npm run test-only",
-    "gen-esm-wrapper": "gen-esm-wrapper . dist/esm-wrapper.mjs",
     "prepack": "npm run build"
   },
   "repository": {
@@ -58,12 +64,12 @@
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "abort-controller": "^3.0.0",
-    "gen-esm-wrapper": "^1.1.3",
     "prebuildify": "^5.0.1",
     "snazzy": "^9.0.0",
     "standardx": "^7.0.0",
     "tap": "^15.0.6",
     "ts-node": "^10.9.2",
+    "tsup": "^8.2.4",
     "typescript": "^5.3.3"
   },
   "dependencies": {
