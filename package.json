@@ -12,11 +12,15 @@
   "module": "./dist/lib/index.mjs",
   "types": "./dist/lib/index.d.ts",
   "exports": {
-    "import": {
-      "types": "./dist/lib/index.d.mts",
-      "default": "./dist/lib/index.mjs"
-    },
-    "require": {
+    ".": {
+      "import": {
+        "types": "./dist/lib/index.d.mts",
+        "default": "./dist/lib/index.mjs"
+      },
+      "require": {
+        "types": "./dist/lib/index.d.ts",
+        "default": "./dist/lib/index.js"
+      },
       "types": "./dist/lib/index.d.ts",
       "default": "./dist/lib/index.js"
     }
