@@ -1,4 +1,6 @@
 import { defineConfig } from "tsup";
+import { copyFile } from "node:fs/promises";
+import { join } from "node:path";
 
 export default defineConfig({
   outDir: "dist/lib",
@@ -10,4 +12,10 @@ export default defineConfig({
   minify: false,
   shims: true,
   dts: true,
+  async onSuccess() {
+    await copyFile(
+      join(__dirname, "package.json"),
+      join(__dirname, "dist/package.json"),
+    );
+  },
 });
